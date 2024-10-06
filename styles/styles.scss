@@ -1,0 +1,346 @@
+// Size
+$minWidth: 23.438em;
+$maxWidth: 90em;
+$minMaxWidth: 53.125em;
+
+// Colors
+
+$clr-100: hsl(217, 19%, 35%);
+$clr-200: hsl(214, 17%, 51%);
+$clr-300: hsl(212, 23%, 69%);
+$clr-400: hsl(210, 46%, 95%);
+$clr-500: hsl(120, 63%, 26%);
+// Font Size
+$fs-100: 1.125rem;
+
+// Font Family
+$ff-100: "Manrope", sans-serif;
+
+// Font Weights
+$fw-100: 500;
+$fw-200: 700;
+
+@mixin center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100dvh;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $clr-400;
+    position: relative;
+    overflow-x: hidden;
+}
+
+button,
+a {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+//  Global Setup
+
+body .background {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    fill: none;
+    stroke-width: 5px;
+    stroke: $clr-500;
+    display: fixed;
+
+    & path {
+        filter: drop-shadow(5px 25px 5px rgba(0, 0, 0, 0.5));
+    }
+}
+
+/* Define the animation keyframes */
+@keyframes draw {
+    to {
+        stroke-dashoffset: 0; /* Final state where stroke is fully drawn */
+    }
+}
+
+article {
+    width: 60em;
+    height: 27em;
+    min-height: 27em;
+    display: flex;
+    box-shadow: 5px 3px 20px 1px $clr-300;
+
+    & picture {
+        width: 40%;
+        height: 100%;
+
+        & img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
+    & section {
+        width: 60%;
+        height: 100%;
+        padding-left: 2em;
+        background-color: hsl(0, 0%, 100%);
+
+        & h1 {
+            font-family: $ff-100;
+            font-weight: $fw-200;
+            font-size: clamp(1rem, -0.0638rem + 3.4043vw, 1.8rem);
+            color: $clr-100;
+            margin-block: 2em 0.5em;
+            margin-inline-end: 2em;
+        }
+
+        & p {
+            font-family: $ff-100;
+            font-weight: $fw-100;
+            color: $clr-200;
+            margin-block-end: 2em;
+            font-size: $fs-100 - 0.1rem;
+            margin-inline-end: 4em;
+            line-height: 1.563em;
+        }
+
+        & .profile {
+            width: 100%;
+            height: 30%;
+            display: flex;
+            position: relative;
+
+            & .user-avatar {
+                width: 20%;
+                height: 100%;
+                @include center();
+
+                & img {
+                    width: 4em;
+                    height: 4em;
+                    border-radius: 50%;
+                }
+            }
+
+            & .user-details {
+                width: 60%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                & span {
+                    font-family: $ff-100;
+                }
+
+                & span:nth-child(1) {
+                    font-weight: $fw-200;
+                    color: $clr-100;
+                }
+
+                & span:nth-child(2) {
+                    color: $clr-200;
+                    font-weight: $fw-100;
+                }
+            }
+
+            & .social-btn {
+                width: 20%;
+                height: 100%;
+                @include center();
+
+                $borderOffset: 5px;
+
+                & .social-media-btn {
+                    width: 2em;
+                    height: 2em;
+                    border: none;
+                    border-radius: 50%;
+                    outline: none;
+                    background-color: $clr-400;
+                    scale: 1.5;
+                    position: absolute;
+                    z-index: 10;
+                    transform: rotateZ(0deg);
+                    outline-offset: 0;
+                    outline: 1px solid $clr-400;
+                    transition: 500ms all;
+
+                    & svg {
+                        transition: 500ms all;
+                    }
+                }
+
+                & .active-social-btn {
+                    transition: 500ms all;
+                    transform: rotateZ(360deg);
+                    outline: 2px dotted $clr-500;
+                    outline-offset: $borderOffset;
+
+                    & svg path {
+                        fill: $clr-500;
+                    }
+                }
+            }
+
+            & .social-media-toolbar {
+                width: 20em;
+                height: 5em;
+                display: block;
+                position: absolute;
+                top: -6em;
+                right: -7em;
+                background-color: $clr-100;
+                border-radius: 1em;
+                @include center();
+                gap: 1em;
+                filter: opacity(0);
+
+                & .share-btn {
+                    width: 8em;
+                    height: 3em;
+                    background-color: transparent;
+                    border: none;
+                    outline: none;
+
+                    & a {
+                        color: $clr-400;
+                        font-family: $ff-100;
+                        text-transform: uppercase;
+                        letter-spacing: 10px;
+                        transition: 500ms linear;
+                    }
+                }
+
+                & .share-btn:hover a {
+                    animation: 500ms anim 1 linear;
+                    font-weight: $fw-200;
+                }
+
+                @keyframes anim {
+                    0% {
+                        letter-spacing: 10px;
+                    }
+                    50% {
+                        letter-spacing: 1px;
+                    }
+                    100% {
+                        letter-spacing: 10px;
+                    }
+                }
+
+                & .social-icon {
+                    margin-left: 1em;
+                    transition: 300ms all;
+                }
+
+                & .social-icon:hover {
+                    scale: 1.5;
+                    transition: 300ms all;
+                }
+            }
+
+            & .social-media-toolbar::before {
+                content: "";
+                width: 1.5em;
+                height: 1.5em;
+                background-color: $clr-100;
+                position: absolute;
+                bottom: -0.6em;
+                left: 45%;
+                transform: rotateZ(45deg);
+            }
+        }
+    }
+}
+
+@media (width < $minMaxWidth) {
+    body .background {
+        display: block;
+        width: 50%;
+        height: 50%;
+        position: absolute;
+        top: -80px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: -1;
+    }
+
+    article {
+        width: 90%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        border-radius: 1em;
+        overflow: hidden;
+
+        & picture {
+            width: 100%;
+        }
+
+        & section {
+            width: 100%;
+            height: 60%;
+            padding-left: 0;
+
+            & h1 {
+                margin-inline-start: 1em;
+            }
+
+            & p {
+                font-size: $fs-100 - 0.3rem;
+                margin-inline: 1.2em 1em;
+            }
+
+            & .profile {
+                width: 100%;
+                padding: 1em 0 1em 0;
+                @include center();
+
+                & .user-avatar {
+                    margin-left: 1em;
+                }
+
+                & .social-media-toolbar {
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    border-radius: 0;
+                    justify-content: flex-start;
+                    gap: 0;
+                    padding-left: 1em;
+
+                    & .social-icon {
+                        margin: 0 0.8em 0 0.8em;
+                    }
+                }
+            }
+        }
+    }
+}

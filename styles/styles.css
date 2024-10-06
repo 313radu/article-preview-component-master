@@ -1,0 +1,288 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100dvh;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(210, 46%, 95%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+body .background {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  fill: none;
+  stroke-width: 5px;
+  stroke: hsl(120, 63%, 26%);
+  display: fixed;
+}
+body .background path {
+  filter: drop-shadow(5px 25px 5px rgba(0, 0, 0, 0.5));
+}
+
+/* Define the animation keyframes */
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0; /* Final state where stroke is fully drawn */
+  }
+}
+article {
+  width: 60em;
+  height: 27em;
+  min-height: 27em;
+  display: flex;
+  box-shadow: 5px 3px 20px 1px hsl(212, 23%, 69%);
+}
+article picture {
+  width: 40%;
+  height: 100%;
+}
+article picture img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+article section {
+  width: 60%;
+  height: 100%;
+  padding-left: 2em;
+  background-color: hsl(0, 0%, 100%);
+}
+article section h1 {
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1rem, -0.0638rem + 3.4043vw, 1.8rem);
+  color: hsl(217, 19%, 35%);
+  margin-block: 2em 0.5em;
+  margin-inline-end: 2em;
+}
+article section p {
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  color: hsl(214, 17%, 51%);
+  margin-block-end: 2em;
+  font-size: 1.025rem;
+  margin-inline-end: 4em;
+  line-height: 1.563em;
+}
+article section .profile {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  position: relative;
+}
+article section .profile .user-avatar {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+article section .profile .user-avatar img {
+  width: 4em;
+  height: 4em;
+  border-radius: 50%;
+}
+article section .profile .user-details {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+article section .profile .user-details span {
+  font-family: "Manrope", sans-serif;
+}
+article section .profile .user-details span:nth-child(1) {
+  font-weight: 700;
+  color: hsl(217, 19%, 35%);
+}
+article section .profile .user-details span:nth-child(2) {
+  color: hsl(214, 17%, 51%);
+  font-weight: 500;
+}
+article section .profile .social-btn {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+article section .profile .social-btn .social-media-btn {
+  width: 2em;
+  height: 2em;
+  border: none;
+  border-radius: 50%;
+  outline: none;
+  background-color: hsl(210, 46%, 95%);
+  scale: 1.5;
+  position: absolute;
+  z-index: 10;
+  transform: rotateZ(0deg);
+  outline-offset: 0;
+  outline: 1px solid hsl(210, 46%, 95%);
+  transition: 500ms all;
+}
+article section .profile .social-btn .social-media-btn svg {
+  transition: 500ms all;
+}
+article section .profile .social-btn .active-social-btn {
+  transition: 500ms all;
+  transform: rotateZ(360deg);
+  outline: 2px dotted hsl(120, 63%, 26%);
+  outline-offset: 5px;
+}
+article section .profile .social-btn .active-social-btn svg path {
+  fill: hsl(120, 63%, 26%);
+}
+article section .profile .social-media-toolbar {
+  width: 20em;
+  height: 5em;
+  display: block;
+  position: absolute;
+  top: -6em;
+  right: -7em;
+  background-color: hsl(217, 19%, 35%);
+  border-radius: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  filter: opacity(0);
+}
+article section .profile .social-media-toolbar .share-btn {
+  width: 8em;
+  height: 3em;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+article section .profile .social-media-toolbar .share-btn a {
+  color: hsl(210, 46%, 95%);
+  font-family: "Manrope", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  transition: 500ms linear;
+}
+article section .profile .social-media-toolbar .share-btn:hover a {
+  animation: 500ms anim 1 linear;
+  font-weight: 700;
+}
+@keyframes anim {
+  0% {
+    letter-spacing: 10px;
+  }
+  50% {
+    letter-spacing: 1px;
+  }
+  100% {
+    letter-spacing: 10px;
+  }
+}
+article section .profile .social-media-toolbar .social-icon {
+  margin-left: 1em;
+  transition: 300ms all;
+}
+article section .profile .social-media-toolbar .social-icon:hover {
+  scale: 1.5;
+  transition: 300ms all;
+}
+article section .profile .social-media-toolbar::before {
+  content: "";
+  width: 1.5em;
+  height: 1.5em;
+  background-color: hsl(217, 19%, 35%);
+  position: absolute;
+  bottom: -0.6em;
+  left: 45%;
+  transform: rotateZ(45deg);
+}
+
+@media (width < 53.125em) {
+  body .background {
+    display: block;
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+  }
+  article {
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1em;
+    overflow: hidden;
+  }
+  article picture {
+    width: 100%;
+  }
+  article section {
+    width: 100%;
+    height: 60%;
+    padding-left: 0;
+  }
+  article section h1 {
+    margin-inline-start: 1em;
+  }
+  article section p {
+    font-size: 0.825rem;
+    margin-inline: 1.2em 1em;
+  }
+  article section .profile {
+    width: 100%;
+    padding: 1em 0 1em 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  article section .profile .user-avatar {
+    margin-left: 1em;
+  }
+  article section .profile .social-media-toolbar {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 0;
+    justify-content: flex-start;
+    gap: 0;
+    padding-left: 1em;
+  }
+  article section .profile .social-media-toolbar .social-icon {
+    margin: 0 0.8em 0 0.8em;
+  }
+}/*# sourceMappingURL=styles.css.map */
