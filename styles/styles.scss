@@ -61,6 +61,8 @@ a {
 //  Global Setup
 
 body .background {
+    max-width: $minWidth;
+
     width: 50%;
     height: 50%;
     position: absolute;
@@ -85,6 +87,8 @@ body .background {
 }
 
 article {
+    max-width: $maxWidth;
+    
     width: 60em;
     height: 27em;
     min-height: 27em;
@@ -281,6 +285,8 @@ article {
 
 @media (width < $minMaxWidth) {
     body .background {
+        min-width: $minWidth;
+
         display: block;
         width: 50%;
         height: 50%;
@@ -292,6 +298,8 @@ article {
     }
 
     article {
+    min-width: $minWidth;
+
         width: 90%;
         height: auto;
         display: flex;
